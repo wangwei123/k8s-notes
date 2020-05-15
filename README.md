@@ -1,19 +1,18 @@
-# k8s-notes
-k8s笔记, 自动化脚本搭建k8s集群环境
+### k8s笔记, 自动化脚本搭建k8s集群环境
 
-####准备三个服务器作为最小集群，1个master, 2个node，命名分别为：
+#### 准备三个服务器作为最小集群，1个master, 2个node，命名分别为：
 k8s-master, k8s-node01, k8s-node02
 
-####将以下文件上传到master服务器的/home目录:
+#### 将以下文件上传到master服务器的/home目录:
 install-docker.sh	
 install-k8s-master.sh
 kube-flannel.yml
 
-####将以下文件上传到2个node服务器的/home目录:
+#### 将以下文件上传到2个node服务器的/home目录:
 install-docker.sh	
 install-k8s-nodes.sh
 
-###首先安装k8s-master环境，进入/home目录，执行如下命令步骤：
+#### 首先安装k8s-master环境，进入/home目录，执行如下命令步骤：
 ```
 # 安装docker，执行如下命令
 ./install-docker.sh
@@ -42,7 +41,7 @@ kubeadm join 172.19.140.157:6443 --token wqntln.e6pmp2owx06t0bwm \
     --discovery-token-ca-cert-hash sha256:02e503684f853c56315d653b9a1627329b20cefec8619125c8d01fb313a5ae65 
 ```
 
-###安装k8s-node01环境，进入k8s-node01服务器的/home目录，执行如下命令步骤：
+#### 安装k8s-node01环境，进入k8s-node01服务器的/home目录，执行如下命令步骤：
 ```
 # 安装docker，执行如下命令
 ./install-docker.sh
@@ -68,7 +67,7 @@ systemctl restart docker
 # 然后再执行kubectl get nodes查看状态，网络可能有延迟，可以等待一会再执行
 ```
 
-### k8s-node02的安装和k8s-node01是一样的
+#### k8s-node02的安装和k8s-node01是一样的
 
     
 
