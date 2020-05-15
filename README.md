@@ -1,16 +1,22 @@
 ### k8s笔记, 自动化脚本搭建k8s集群环境
 
-#### 准备三个服务器作为最小集群，1个master, 2个node，命名分别为：
+准备三个服务器作为最小集群，1个master, 2个node，命名分别为：
+```
 k8s-master, k8s-node01, k8s-node02
+```
 
-#### 将以下文件上传到master服务器的/home目录:
+将以下文件上传到master服务器的/home目录:
+```
 install-docker.sh	
 install-k8s-master.sh
 kube-flannel.yml
+```
 
-#### 将以下文件上传到2个node服务器的/home目录:
+将以下文件上传到2个node服务器的/home目录:
+```
 install-docker.sh	
 install-k8s-nodes.sh
+```
 
 #### 首先安装k8s-master环境，进入/home目录，执行如下命令步骤：
 ```
