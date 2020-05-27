@@ -23,3 +23,21 @@ spec:	        #这是关于该Deployment的描述，可以理解为你期待该D
         image: nginx:1.7.9	#使用镜像nginx:1.7.9创建container，该container默认80端口可访问
 
 ```
+
+执行apply部署nginx应用:
+```shell
+kubectl apply -f nginx-deployment.yaml
+```
+查看部署结果:
+```shell
+# 查看 Deployment
+kubectl get deployments
+
+# 查看 Pod
+kubectl get pods
+```
+
+
+
+
+
