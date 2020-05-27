@@ -36,6 +36,7 @@ kubectl get deployments
 # 查看 Pod
 kubectl get pods
 ```
+对外提供访问服务
 
 
 
