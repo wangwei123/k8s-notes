@@ -44,8 +44,7 @@ kubectl get pods
 #输出结果如下,因为replicas(副本数)为1,只有一个pod
 NAME                                READY   STATUS    RESTARTS   AGE
 nginx-deployment-7c96855774-892nr   1/1     Running   0          17h
-`
-``
+```
 
 #### 2.发布服务 
 2.1. 对外提供访问服务，创建文件 nginx-service.yaml，内容如如下:
