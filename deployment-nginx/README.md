@@ -106,8 +106,23 @@ nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
 
 ```
 
+滚动发布，在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布
+修改 nginx-deployment.yaml中的image: nginx:1.7.9为nginx:1.8,内容如下：
+```yaml
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.8   #使用镜像nginx:1.8替换原来的nginx:1.7.9
+```
 
+执行命令
+```shell
+#创建deployment
+kubectl apply -f nginx-deployment.yaml
 
+#执行命令，可观察到 pod 逐个被替换的过程
+watch kubectl get pods -l app=nginx
+```
 
 
 
