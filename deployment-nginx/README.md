@@ -111,7 +111,7 @@ nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
 ```
 
 ### 4. 滚动发布
-在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布 
+在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布  
 4.1. 修改 nginx-deployment.yaml中的image: nginx:1.7.9为nginx:1.8,内容如下：
 ```yaml
     spec:
