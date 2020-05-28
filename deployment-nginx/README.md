@@ -33,8 +33,16 @@ kubectl apply -f nginx-deployment.yaml
 # 查看 Deployment
 kubectl get deployments
 
+#输出结果如下,因为replicas(副本数)为1,只有一个deployment
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   1/1     1            1           7d18h
+
 # 查看 Pod
 kubectl get pods
+
+#输出结果如下,因为replicas(副本数)为1,只有一个pod
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-7c96855774-892nr   1/1     Running   0          17h
 ```
 对外提供访问服务，创建文件 nginx-service.yaml，内容如如下:
 ```yaml
@@ -67,6 +75,40 @@ kubectl get services -o wide
 #访问服务，节点IP可以执行cat /etc/hosts查看
 curl <任意节点的 IP>:32600
 ```
+伸缩应用程序，修改nginx-deployment.yaml的replicas(副本数)实现伸缩
+```yaml
+spec:
+  replicas: 3    #使用该Deployment创建3个应用程序实例
+```
+
+执行命令
+```shell
+#创建deployment
+kubectl apply -f nginx-deployment.yaml
+
+#查看执行结果
+watch kubectl get pods -o wide
+
+# 查看 Deployment
+kubectl get deployments
+
+#输出结果如下,因为replicas(副本数)为3,现在有3个deployment
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3/3     3            3           7d18h
+
+# 查看 Pod
+kubectl get pods
+
+#输出结果如下,因为replicas(副本数)为3,现在有3个pod
+nginx-deployment-7c96855774-892nr   1/1     Running   0          17h
+nginx-deployment-7c96855774-nptkv   1/1     Running   0          2m4s
+nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
+
+```
+
+
+
+
 
 
 
