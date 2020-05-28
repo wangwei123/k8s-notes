@@ -24,7 +24,7 @@ spec:	        #这是关于该Deployment的描述，可以理解为你期待该D
 
 ```
 
-### 执行apply部署nginx应用:
+执行apply部署nginx应用:
 ```shell
 kubectl apply -f nginx-deployment.yaml
 ```
@@ -64,7 +64,7 @@ spec:	    #这是关于该 Service 的定义，描述了 Service 如何选择 Po
   type: NodePort	#Serive的类型，ClusterIP/NodePort/LoaderBalancer
 ```
 
-### 创建服务和访问服务
+创建服务和访问服务
 ```shell
 #创建服务
 kubectl apply -f nginx-service.yaml
@@ -75,7 +75,7 @@ kubectl get services -o wide
 #访问服务，节点IP可以执行cat /etc/hosts查看
 curl <任意节点的 IP>:32600
 ```
-### 伸缩应用程序 
+伸缩应用程序 
 修改nginx-deployment.yaml的replicas(副本数)实现伸缩
 ```yaml
 spec:
@@ -107,7 +107,7 @@ nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
 
 ```
 
-### 滚动发布，在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布 
+滚动发布，在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布 
 修改 nginx-deployment.yaml中的image: nginx:1.7.9为nginx:1.8,内容如下：
 ```yaml
     spec:
