@@ -1,7 +1,7 @@
 ### k8s部署一个nginx应用
 
-#### 1. 创建deployment
-1.1 首先创建文件 nginx-deployment.yaml，内容如下：
+### 1. 创建deployment
+1.1. 首先创建文件 nginx-deployment.yaml，内容如下：
 ```yaml
 apiVersion: apps/v1	#与k8s集群版本有关，使用 kubectl api-versions 即可查看当前集群支持的版本
 kind: Deployment	#该配置的类型，我们使用的是 Deployment
@@ -25,11 +25,11 @@ spec:	        #这是关于该Deployment的描述，可以理解为你期待该D
 
 ```
 
-1.2 执行apply部署nginx应用:
+1.2. 执行apply部署nginx应用:
 ```shell
 kubectl apply -f nginx-deployment.yaml
 ```
-1.3 查看部署结果:
+1.3. 查看部署结果:
 ```shell
 # 查看 Deployment
 kubectl get deployments
@@ -48,7 +48,7 @@ nginx-deployment-7c96855774-892nr   1/1     Running   0          17h
 ``
 
 #### 2.发布服务 
-2.1 对外提供访问服务，创建文件 nginx-service.yaml，内容如如下:
+2.1. 对外提供访问服务，创建文件 nginx-service.yaml，内容如如下:
 ```yaml
 apiVersion: v1
 kind: Service
@@ -68,7 +68,7 @@ spec:	    #这是关于该 Service 的定义，描述了 Service 如何选择 Po
   type: NodePort	#Serive的类型，ClusterIP/NodePort/LoaderBalancer
 ```
 
-2.2 创建服务和访问服务
+2.2. 创建服务和访问服务
 ```shell
 #创建服务
 kubectl apply -f nginx-service.yaml
@@ -79,14 +79,14 @@ kubectl get services -o wide
 #访问服务，节点IP可以执行cat /etc/hosts查看
 curl <任意节点的 IP>:32600
 ```
-#### 3. 伸缩应用程序 
-3.1 修改nginx-deployment.yaml的replicas(副本数)实现伸缩
+### 3. 伸缩应用程序 
+3.1. 修改nginx-deployment.yaml的replicas(副本数)实现伸缩
 ```yaml
 spec:
   replicas: 3    #使用该Deployment创建3个应用程序实例
 ```
 
-3.2 执行命令
+3.2. 执行命令
 ```shell
 #创建deployment
 kubectl apply -f nginx-deployment.yaml
@@ -111,9 +111,9 @@ nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
 
 ```
 
-#### 4. 滚动发布
+### 4. 滚动发布
 在不停止现有服务的情况下，通过逐个创建新的Pod替换旧的Pod，实现滚动发布 
-4.1 修改 nginx-deployment.yaml中的image: nginx:1.7.9为nginx:1.8,内容如下：
+4.1. 修改 nginx-deployment.yaml中的image: nginx:1.7.9为nginx:1.8,内容如下：
 ```yaml
     spec:
       containers:
@@ -121,7 +121,7 @@ nginx-deployment-7c96855774-xq54b   1/1     Running   0          2m4s
         image: nginx:1.8   #使用镜像nginx:1.8替换原来的nginx:1.7.9
 ```
 
-4.2 执行命令
+4.2. 执行命令
 ```shell
 #创建deployment
 kubectl apply -f nginx-deployment.yaml
